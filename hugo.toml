@@ -1,28 +1,45 @@
 baseURL = 'https://jaredstewart.io/'
 languageCode = 'en-us'
-title = 'Jared Stewarts Personal Blog'
+title = 'Fragments of a System'
+subtitle = 'the personal blog of jared stewart'
+
+theme = 'typo'
+
+# SEO and Performance
+enableRobotsTXT = true
+enableGitInfo = true
+
+# RSS and Sitemap
+[sitemap]
+changefreq = 'whenever'
+filename = 'sitemap.xml'
+priority = 0.5
 
 [taxonomies]
 tag = 'tags'
 
 [params]
+# Site subtitle
+subtitle = "the personal blog of jared stewart"
+
 # Meta description
-description = "A Polymathic Blog"
+description = "Personal blog of Jared Stewart - software engineer, technical leader, and builder of scalable systems. Insights on technology, leadership, and problem-solving."
+
+# SEO Keywords
+keywords = ["software engineer", "technical leadership", "scalable systems", "engineering management", "full-stack development"]
+
+# Author information for SEO
+author = "Jared Stewart"
+
+# Open Graph defaults
+[params.opengraph]
+type = "website"
+locale = "en_US"
 
 # Appearance settings
-theme = 'auto'
+theme = 'light'
 colorPalette = 'default'
 hideHeader = false
-
-# Intro on main page, content is markdown
-homeIntroTitle = 'Hi!'
-homeIntroContent = """
-I am 
-"""
-
-# Collection to display on home
-homeCollectionTitle = 'Posts'
-homeCollection = 'posts'
 
 # Lists parameters
 paginationSize = 100
@@ -31,7 +48,7 @@ listDateFormat = '2 Jan 2006'
 
 # Breadcrumbs
 [params.breadcrumbs]
-enabled = true
+enabled = false
 showCurrentPage = true
 home = "Home"
 
@@ -51,12 +68,12 @@ name = "home"
 url = "/"
 
 [[params.menu]]
-name = "posts"
-url = "/posts"
+name = "projects"
+url = "/projects"
 
 [[params.menu]]
-name = "about"
-url = "/about"
+name = "blog"
+url = "/blog"
 
 # Syntax highlight on code blocks
 [markup]

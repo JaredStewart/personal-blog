@@ -1,0 +1,80 @@
+{{- $author := site.Params.author | default "Jared Stewart" -}}
+{{- $baseURL := site.BaseURL -}}
+
+{{- if .IsHome -}}
+<!-- Schema.org for Homepage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ $author }}",
+  "url": "{{ $baseURL }}",
+  "description": "{{ site.Params.description }}",
+  "jobTitle": "Software Engineer & Technical Leader",
+  "knowsAbout": ["Software Engineering", "Technical Leadership", "System Architecture", "Full-Stack Development", "Engineering Management"],
+  "sameAs": [
+    {{- range $index, $social := site.Params.social -}}
+    {{- if $index }},{{ end }}
+    "{{ $social.url }}"
+    {{- end -}}
+  ]
+}
+</script>
+
+<!-- WebSite Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.Title }}",
+  "url": "{{ $baseURL }}",
+  "description": "{{ site.Params.description }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ $author }}"
+  }
+}
+</script>
+
+{{- else if eq .Type "posts" -}}
+<!-- Blog Post Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ .Title }}",
+  "description": "{{ .Params.description | default .Summary }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ $author }}"
+  },
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05-07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}",
+  "url": "{{ .Permalink }}",
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ $author }}"
+  }
+}
+</script>
+
+{{- else -}}
+<!-- Web Page Schema for static pages -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ .Title }}",
+  "description": "{{ .Params.description | default .Summary }}",
+  "url": "{{ .Permalink }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ $author }}"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ $author }}"
+  }
+}
+</script>
+{{- end -}}
